@@ -1,20 +1,31 @@
 package day1;
 
+import adventOfCode.LinesParser;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class day1 {
 
-    final static String INPUT_FILE = "inputDay1.txt";
+    final static String INPUT_FILE = "C:\\Learn\\advent-of-code\\src\\adventOfCode\\inputDay1.txt";
     final static Integer SEARCHED_SUM = 2020;
-    static ArrayList<Integer> inputList = new ArrayList<>();
+    static List<Integer> inputList;
 
     public static void main(String[] args) throws Exception {
-        readFile();
+        parseLinesToInt();
         puzzle1();
         puzzle2();
+    }
+
+    static void parseLinesToInt() throws Exception {
+        inputList = LinesParser.getLinesFromFile(INPUT_FILE).stream()
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     static void puzzle1() {
